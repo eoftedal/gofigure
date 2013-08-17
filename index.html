@@ -1,0 +1,26 @@
+<script src="lib/jquery.min.js"></script>
+<script src="lib/raphael-1.5.2-min.js"></script>
+<script src="lib/Vegur.js"></script>
+<script src="lib/cufon.js"></script>
+<script src="gofigure.js"></script>
+
+Click the box
+<div id="dds"></div>
+<script>
+
+    var figure = gofigure.create('dds', '780', '450');
+    figure.box(600, 50, 100, 200).animate();
+    figure.centeredText(650, 270, "A box").animate();
+
+    var steps = [
+        figure.arrow(600, 150, 500, 150).centeredText(550, 167, "to"),
+        figure.box(400, 50, 100, 200),
+        figure.centeredText(450, 270, "Another box"),
+        figure.arrow(400, 150, 300, 150, {heads: "end" }).centeredText(350, 167, "transform"),
+
+        figure.box(200, 50, 100, 200, {duration: 5000}),
+        figure.centeredText(250, 270, "A third box"),
+    ];
+    figure.bindClick(steps);
+
+</script>
