@@ -8,7 +8,7 @@ var gofigure = function() {
         w -= 12.875 / 12.875 * radius * 2;
         h -= 12.876 / 12.875 * radius * 2;
         x += 12.875 / 12.875 * radius;
-        return { pathString: "M" + x + "," + y +
+        return { pathString: "M" + (x - options.strokeWidth/2.0 ) + "," + y + "h" + options.strokeWidth/2.0 + 
             "h" + w + "c" + cx[0] + ",0," + cx[1] + "," + cy[0] + "," + cx[1] + "," + cy[1] + " " +
             "v" + h + "c0," + cx[0] + ",-" + cy[0] + "," + cx[1] + ",-" + cx[1] + "," + cy[1] + " " +
             "h-" + w + "c-" + cx[0] + ",0,-" + cx[1] + ",-" + cy[0] + ",-" + cx[1] + ",-" + cy[1] + " " +
@@ -116,8 +116,7 @@ var gofigure = function() {
     }
 
 
-    function prepare(step, path, defaults, options) {
-        options = $.extend(defaults, options);
+    function prepare(step, path, options) {
         step.parts.push({ path: path, options: options});
         return step;
     }
@@ -135,18 +134,22 @@ var gofigure = function() {
 
     function createStep(canvas, group) {
         var step = { parts: [] };
+        var defaults = function(options){ return $.extend({ strokeWidth : 3 }, options); };
         step.box = function(x, y, width, height, options) {
-            return prepare(step, box(x, y, width, height, options), {}, options);
+            options = defaults(options);
+            return prepare(step, box(x, y, width, height, options), options);
         };
         step.centeredText = function(x, y, text, options) {
-            return prepare(step, drawcenteredtext(canvas, x, y, text), { strokeWidth: -1, fill: "#000" }, options);
+            options = defaults($.extend({ strokeWidth: -1, fill: "#000" }, options));
+            return prepare(step, drawcenteredtext(canvas, x, y, text), options);
         };
         step.line = function(xfrom, yfrom, xto, yto, options) {
-            return prepare(step, line(xfrom, yfrom, xto, yto, options), {}, options);
+            options = defaults(options);
+            return prepare(step, line(xfrom, yfrom, xto, yto, options), options);
         };
         step.arrow = function(xfrom, yfrom, xto, yto, options) {
-            options2 = $.extend({ arrowheads : "both"}, options);
-            return prepare(step, line(xfrom, yfrom, xto, yto, options2), {}, options);
+            options = defaults($.extend({ arrowheads : "both"}, options));
+            return prepare(step, line(xfrom, yfrom, xto, yto, options), options);
         };
         step.animate = function() {
             doAnimate(canvas, group, step.parts);
