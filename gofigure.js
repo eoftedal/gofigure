@@ -40,8 +40,8 @@ var gofigure = function() {
             join: join};
     };
 
-    var drawcenteredtext = function(canvas, x, y, text) { //Yes, this is quite ugly code, but it seems to work
-        var result = drawtext(canvas, -1000, -1000, text).pathString;
+    var drawcenteredtext = function(canvas, x, y, text, options) { //Yes, this is quite ugly code, but it seems to work
+        var result = drawtext(canvas, -1000, -1000, text, options).pathString;
         var tmp = result.replace(/[A-Z](,?[A-Z])*/g, ",").replace(/^,+/, "").replace(/,+$/g, "");
         var parts = tmp.split(",");
         var maxRight = -2000;
@@ -51,13 +51,15 @@ var gofigure = function() {
             maxRight = maxRight < n ? n : maxRight;
             minLeft = minLeft < n ? minLeft : n;
         }
-        return drawtext(canvas, x - (maxRight - minLeft)/2.0, y, text);
+        return drawtext(canvas, x - (maxRight - minLeft)/2.0, y, text, options);
     };
 
 
-    var drawtext = function(canvas, x, y, text) {
+    var drawtext = function(canvas, x, y, text, options) {
+        options = $.extend({fontsize : 20}, options);
+        console.log(options);
         var pathString = [];
-        var line = canvas.print(x, y, text, canvas.getFont("Vegur"), 20);
+        var line = canvas.print(x, y, text, canvas.getFont("Vegur"), options.fontsize);
 
         for (var i in line.items) {
             pathString.push(line[i].node.getAttribute("d"));
@@ -141,7 +143,7 @@ var gofigure = function() {
         };
         step.centeredText = function(x, y, text, options) {
             options = defaults($.extend({ strokeWidth: -1, fill: "#000" }, options));
-            return prepare(step, drawcenteredtext(canvas, x, y, text), options);
+            return prepare(step, drawcenteredtext(canvas, x, y, text, options), options);
         };
         step.line = function(xfrom, yfrom, xto, yto, options) {
             options = defaults(options);
