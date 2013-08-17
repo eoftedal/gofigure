@@ -1,15 +1,18 @@
-/*global $:false, Raphael:false */
+/* global $:false, Raphael:false */
 
 var gofigure = function() {
-    var box = function(x, y, w, h) {
-        w -= 12.875*2;
-        h -= 12.876*2;
-        x += 12.875;
+    var box = function(x, y, w, h, options) {
+        var radius = $.extend({radius: 12.875}, options).radius;
+        var cx = [7.109 / 12.875 * radius, 12.875 / 12.875 * radius];
+        var cy = [5.765 / 12.875 * radius, 12.876 / 12.875 * radius];
+        w -= 12.875 / 12.875 * radius * 2;
+        h -= 12.876 / 12.875 * radius * 2;
+        x += 12.875 / 12.875 * radius;
         return { pathString: "M" + x + "," + y +
-            "h" + w + "c7.109,0,12.875,5.765,12.875,12.876 " +
-            "v" + h + "c0,7.109,-5.765,12.875,-12.875,12.876 " +
-            "h-" + w + "c-7.109,0,-12.875,-5.765,-12.875,-12.876 " +
-            "v-" + h + " c0,-7.109,5.765,-12.875,12.875,-12.876",
+            "h" + w + "c" + cx[0] + ",0," + cx[1] + "," + cy[0] + "," + cx[1] + "," + cy[1] + " " +
+            "v" + h + "c0," + cx[0] + ",-" + cy[0] + "," + cx[1] + ",-" + cx[1] + "," + cy[1] + " " +
+            "h-" + w + "c-" + cx[0] + ",0,-" + cx[1] + ",-" + cy[0] + ",-" + cx[1] + ",-" + cy[1] + " " +
+            "v-" + h + "c0,-" + cx[0] + "," + cy[0] + ",-" + cx[1] + "," + cx[1] + ",-" + cy[1],
             join: join };
     };
 
@@ -133,7 +136,7 @@ var gofigure = function() {
     function createStep(canvas, group) {
         var step = { parts: [] };
         step.box = function(x, y, width, height, options) {
-            return prepare(step, box(x, y, width, height), {}, options);
+            return prepare(step, box(x, y, width, height, options), {}, options);
         };
         step.centeredText = function(x, y, text, options) {
             return prepare(step, drawcenteredtext(canvas, x, y, text), { strokeWidth: -1, fill: "#000" }, options);
