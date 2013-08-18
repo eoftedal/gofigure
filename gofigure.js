@@ -100,7 +100,9 @@ var gofigure = function() {
             duration: lineObj.options.duration || 1000,
             step: function(pos, fx) {
                 var offset = length * fx.pos;
+                console.log(offset, line);
                 var subpath = line.getSubpath(0, offset);
+                //console.log(subpath);
                 var subline = canvas.path(subpath).attr({
                     "stroke-width": lineObj.options.strokeWidth || 3,
                     stroke: "#000",
