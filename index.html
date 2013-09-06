@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
 <script src="lib/jquery.min.js"></script>
 <script src="lib/raphael-1.5.2-min.js"></script>
@@ -17,13 +18,30 @@ Click the box
 
     var steps = [
         figure.arrow(600, 150, 500, 150).centeredText(550, 167, "to"),
-        figure.box(400, 50, 100, 200, { radius: 0 }).centeredText(450, 270, "Box with small text", {fontsize: 10}),
-        figure.arrow(400, 150, 300, 150, {arrowheads: "end" }).centeredText(350, 167, "single head arrow", {fontsize: 10}),
+        figure.box(400, 50, 100, 200, { radius: 0 }).centeredText(450, 270, "Box with small text", {fontsize: 11}),
+        figure.arrow(400, 150, 300, 150, {arrowheads: "end" }).centeredText(350, 167, "single head arrow", {fontsize: 11}),
 
         figure.centeredText(250, 270, "Slowly drawn box").box(200, 50, 100, 200, {duration: 5000, radius: 25 }),
     ];
     figure.bindClick(steps);
 
 </script>
+
+
+<svg xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <filter id="chalk" height="2" width="1.6" color-interpolation-filters="sRGB" y="-0.5" x="-0.3">
+            <feTurbulence baseFrequency="0.32065" seed="115" result="result1" numOctaves="1" type="turbulence"/>
+            <feOffset result="result2" dx="-5" dy="-5"/>
+            <feDisplacementMap scale="3.05" yChannelSelector="G" in2="result1" xChannelSelector="R" in="SourceGraphic"/>
+        </filter>
+    </defs>
+</svg>
+<style>
+#dds { filter: url(#chalk); -webkit-filter: url(#chalk);}
+</style>
+
+
+
 </body>
 </html>

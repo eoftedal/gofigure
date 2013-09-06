@@ -57,7 +57,6 @@ var gofigure = function() {
 
     var drawtext = function(canvas, x, y, text, options) {
         options = $.extend({fontsize : 20}, options);
-        console.log(options);
         var pathString = [];
         var line = canvas.print(x, y, text, canvas.getFont("Vegur"), options.fontsize);
 
@@ -100,9 +99,7 @@ var gofigure = function() {
             duration: lineObj.options.duration || 1000,
             step: function(pos, fx) {
                 var offset = length * fx.pos;
-                console.log(offset, line);
                 var subpath = line.getSubpath(0, offset);
-                //console.log(subpath);
                 var subline = canvas.path(subpath).attr({
                     "stroke-width": lineObj.options.strokeWidth || 3,
                     stroke: "#000",
