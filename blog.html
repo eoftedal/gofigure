@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/raphael-1.5.2-min.js"></script>
+<script src="lib/Vegur.js"></script>
+<script src="lib/cufon.js"></script>
+<script src="gofigure.js"></script>
+<style>
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+#dds { background: url(paper-texture.jpg) 140px 0px no-repeat;
+    padding-top: 100px;
+    margin-left: -140px;
+}
+
+</style>
+
+</head>
+<body>
+<div id="dds" style=""></div>
+<script>
+
+    var figure = gofigure.create('dds', '780', '450');
+    figure.box(600, 50, 100, 200).animate();
+    figure.centeredText(650, 270, "A box").animate();
+
+    var steps = [
+        figure.arrow(600, 150, 500, 150).centeredText(550, 167, "to"),
+        figure.box(400, 50, 100, 200, { radius: 0 }).centeredText(450, 270, "Box with small text", {fontsize: 11}),
+        figure.arrow(400, 150, 300, 150, {arrowheads: "end" }).centeredText(350, 167, "single head arrow", {fontsize: 11}),
+
+        figure.centeredText(250, 270, "Slowly drawn box").box(200, 50, 100, 200, {duration: 5000, radius: 25 }),
+    ];
+    figure.bindClick(steps);
+
+</script>
+</body>
+</html>
