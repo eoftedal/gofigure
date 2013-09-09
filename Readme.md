@@ -16,7 +16,7 @@ Example code
     //Group two animations together and begin animation immediately
     figure.arrow(600, 150, 500, 150).centeredText(550, 167, "to").animate();
 
-    //Create list of animations and bind them to clicks on the "canvas"
+    //Create list of animations and bind them to clicks on the drawing area
     var steps = [
         figure.arrow(600, 150, 500, 150).centeredText(550, 167, "to"),
         figure.box(400, 50, 100, 200, { radius: 0 }).centeredText(450, 270, "Box with small text", {fontsize: 11}),
