@@ -13,7 +13,7 @@ Example code
     //Draw a box and animate drawing immediately
     figure.box(600, 50, 100, 200).animate();
     
-    //Group two animations together and being animation
+    //Group two animations together and begin animation immediately
     figure.arrow(600, 150, 500, 150).centeredText(550, 167, "to").animate();
 
     //Create list of animations and bind them to clicks on the "canvas"
