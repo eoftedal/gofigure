@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/raphael-1.5.2-min.js"></script>
+<script src="lib/Vegur.js"></script>
+<script src="lib/cufon.js"></script>
+<script src="gofigure.js"></script>
+<style>
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+#dds { background: url(paper-texture.jpg) 140px 0px no-repeat;
+    padding-top: 100px;
+    margin-left: -140px;
+}
+
+</style>
+
+</head>
+<body>
+<div id="dds" style=""></div>
+<script>
+
+    var figure = gofigure.create('dds', '780', '450');
+    figure.box(600, 50, 100, 200)
+    	.arrow(600, 170, 500, 170, {arrowheads: "end" })
+    	.box(400, 50, 100, 200)
+    	.arrow(500, 130, 600, 130, {arrowheads: "end" }).animate();
+
+
+
+</script>
+</body>
+</html>
