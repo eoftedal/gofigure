@@ -23,15 +23,15 @@ var gofigure = function() {
     var line = function(x1, y1, x2, y2, options) {
         var heads = (options || {}).arrowheads || "none";
         var len = (options || {}).len || 10;
-        var ang = Math.atan((x1-x2)/(y1-y2));
+        var ang = Math.atan2((y2-y1), (x2-x1));
         var begin = (heads != "begin" && heads != "both") ? "" : ("M" + x1 + "," + y1 +
-            "l" + -round(Math.sin(ang - Math.PI/4)*len, 3) + "," + round(Math.cos(ang - Math.PI / 4)*len, 3) +
+            "l" + round(Math.cos(ang - Math.PI/4)*len, 3) + "," + round(Math.sin(ang - Math.PI/4)*len, 3) +
             "M" + x1 + "," + y1 +
-            "l" + -round(Math.sin(ang + Math.PI/4)*len, 3) + "," + round(Math.cos(ang + Math.PI / 4)*len, 3));
+            "l" + round(Math.cos(ang + Math.PI/4)*len, 3) + "," + round(Math.sin(ang + Math.PI/4)*len, 3));
         var end = (heads != "end" && heads != "both") ? "" : ("M" + x2 + "," + y2 +
-            "l" + round(Math.sin(ang - Math.PI/4)*len, 3) + "," + round(Math.cos(ang - Math.PI / 4)*len, 3) +
+            "l" + round(Math.cos(ang - Math.PI*3/4)*len, 3) + "," + round(Math.sin(ang - Math.PI*3/4)*len, 3) +
             "M" + x2 + "," + y2 +
-            "l" + round(Math.sin(ang + Math.PI/4)*len, 3) + "," + round(Math.cos(ang + Math.PI / 4)*len, 3));
+            "l" + round(Math.cos(ang + Math.PI*3/4)*len, 3) + "," + round(Math.sin(ang + Math.PI*3/4)*len, 3));
         return  { pathString:
             begin +
             "M" + x1 + "," + y1 +
