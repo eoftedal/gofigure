@@ -12,9 +12,9 @@ body {
     padding: 0px;
 }
 
-#dds { background: url(paper-texture.jpg) 140px 0px no-repeat;
+#dds { background: url(paper-texture.jpg) 0px 0px no-repeat;
     padding-top: 100px;
-    margin-left: -140px;
+    margin-left: 100px;
 }
 
 </style>
@@ -25,10 +25,42 @@ body {
 <script>
 
     var figure = gofigure.create('dds', '780', '450');
-    figure.box(500, 50, 100, 200)
-    	.arrow(500, 170, 400, 170, {arrowheads: "end" })
-    	.box(300, 50, 100, 200)
-    	.arrow(400, 130, 500, 130, {arrowheads: "end" }).animate();
+    var opts = {arrowheads: "end", duration:500 }
+    figure
+    	.arrow(10, 10, 40, 40, opts)
+    	.arrow(50, 10, 50, 40, opts)
+    	.arrow(90, 10, 60, 40, opts)
+    	.arrow(10, 50, 40, 50, opts)
+    	.arrow(90, 50, 60, 50, opts)
+    	.arrow(10, 90, 40, 60, opts)
+    	.arrow(50, 90, 50, 60, opts)
+    	.arrow(90, 90, 60, 60, opts)
+		.animate();
+
+    opts = {arrowheads: "begin", duration:500 }
+    figure
+    	.arrow(110, 10, 140, 40, opts)
+    	.arrow(150, 10, 150, 40, opts)
+    	.arrow(190, 10, 160, 40, opts)
+    	.arrow(110, 50, 140, 50, opts)
+    	.arrow(190, 50, 160, 50, opts)
+    	.arrow(110, 90, 140, 60, opts)
+    	.arrow(150, 90, 150, 60, opts)
+    	.arrow(190, 90, 160, 60, opts)
+		.animate();
+
+    opts = {arrowheads: "both", duration:500 }
+    figure
+    	.arrow(210, 10, 240, 40, opts)
+    	.arrow(250, 10, 250, 40, opts)
+    	.arrow(290, 10, 260, 40, opts)
+    	.arrow(210, 50, 240, 50, opts)
+    	.arrow(290, 50, 260, 50, opts)
+    	.arrow(210, 90, 240, 60, opts)
+    	.arrow(250, 90, 250, 60, opts)
+    	.arrow(290, 90, 260, 60, opts)
+		.animate();
+
 
 
 
