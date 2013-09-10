@@ -62,11 +62,8 @@ var gofigure = function() {
         options = $.extend({fontsize : 20}, options);
         var pathString = [];
         var line = canvas.print(x, y, text, canvas.getFont("Vegur"), options.fontsize);
-
-        for (var i in line.items) {
-            pathString.push(line[i].node.getAttribute("d"));
-            line[i].remove();
-        }
+        pathString.push(line[0].getAttribute("d"));
+        line[0].remove();
         return { pathString: pathString.join(",") };
     };
 
