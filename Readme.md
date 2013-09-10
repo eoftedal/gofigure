@@ -79,6 +79,17 @@ Options:
 
 - - -
 
+##### **circle** `<drawing area or animatable>.circle(x, y, radius, [options])`
+Draw a circle with center at (x, y) with the given radius.
+
+Returns animatable figure.
+
+Options:
+
+* `duration` - animation duration in ms (default: 1000)
+
+- - -
+
 ##### **centeredText** `<drawing area or animatable>.centeredText(x, y, text, [options])`
 Draw text horisontally centered around point (x,y)
 
