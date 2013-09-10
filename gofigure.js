@@ -8,12 +8,18 @@ var gofigure = function() {
         w -= 12.875 / 12.875 * radius * 2;
         h -= 12.876 / 12.875 * radius * 2;
         x += 12.875 / 12.875 * radius;
-        return { pathString: "M" + (x - options.strokeWidth/2.0 ) + "," + y + "h" + options.strokeWidth/2.0 + 
+        console.log(cx, cy, w, h, x);
+        return { 
+            pathString: "M" + (x - options.strokeWidth/2.0 ) + "," + y + "h" + options.strokeWidth/2.0 + 
             "h" + w + "c" + cx[0] + ",0," + cx[1] + "," + cy[0] + "," + cx[1] + "," + cy[1] + " " +
             "v" + h + "c0," + cx[0] + ",-" + cy[0] + "," + cx[1] + ",-" + cx[1] + "," + cy[1] + " " +
             "h-" + w + "c-" + cx[0] + ",0,-" + cx[1] + ",-" + cy[0] + ",-" + cx[1] + ",-" + cy[1] + " " +
-            "v-" + h + "c0,-" + cx[0] + "," + cy[0] + ",-" + cx[1] + "," + cx[1] + ",-" + cy[1],
-            join: join };
+            "v-" + h + "c0,-" + cx[0] + "," + cy[0] + ",-" + cx[1] + "," + cx[1] + ",-" + cy[1]
+        };
+    };
+
+    var circle = function(x, y, radius, options) {
+        return box(x-radius, y-radius, radius*2.001, radius*2.001, $.extend(options, { radius: radius }));
     };
 
     var round = function(num, places) {
@@ -32,12 +38,9 @@ var gofigure = function() {
             "l" + round(Math.cos(ang - Math.PI*3/4)*len, 3) + "," + round(Math.sin(ang - Math.PI*3/4)*len, 3) +
             "M" + x2 + "," + y2 +
             "l" + round(Math.cos(ang + Math.PI*3/4)*len, 3) + "," + round(Math.sin(ang + Math.PI*3/4)*len, 3));
-        return  { pathString:
-            begin +
-            "M" + x1 + "," + y1 +
-            "l" + (x2 - x1) + "," + (y2 - y1) +
-            end,
-            join: join};
+        return  { 
+            pathString: begin + "M" + x1 + "," + y1 + "l" + (x2 - x1) + "," + (y2 - y1) + end 
+        };
     };
 
     var drawcenteredtext = function(canvas, x, y, text, options) { //Yes, this is quite ugly code, but it seems to work
@@ -64,17 +67,8 @@ var gofigure = function() {
             pathString.push(line[i].node.getAttribute("d"));
             line[i].remove();
         }
-        return { pathString: pathString.join(","), join: join};
+        return { pathString: pathString.join(",") };
     };
-
-    var join = function(drawing) {
-        this.pathString += drawing.pathString;
-        return this;
-    };
-
-
-
-
 
     var gofigureid = 0;
     var gofigure_lineid = 0;
@@ -116,11 +110,11 @@ var gofigure = function() {
         });
     }
 
-
     function prepare(step, path, options) {
         step.parts.push({ path: path, options: options});
         return step;
     }
+
     function doAnimate(canvas, group, parts) {
         var lines = [];
         for(var i in parts) {
@@ -143,6 +137,10 @@ var gofigure = function() {
         step.centeredText = function(x, y, text, options) {
             options = defaults($.extend({ strokeWidth: -1, fill: "#000" }, options));
             return prepare(step, drawcenteredtext(canvas, x, y, text, options), options);
+        };
+        step.circle = function(x, y, radius, options) {
+            options = defaults(options);
+            return prepare(step, circle(x, y, radius, options), options);
         };
         step.line = function(xfrom, yfrom, xto, yto, options) {
             options = defaults(options);
@@ -175,6 +173,7 @@ var gofigure = function() {
             animate: function() {},
             box: function(x, y, width, height, options) { return createStep(canvas, group).box(x, y, width, height, options); },
             centeredText: function(x, y, text, options) { return createStep(canvas, group).centeredText(x, y, text, options); },
+            circle: function(x, y, radius, options) { return createStep(canvas, group).circle(x, y, radius, options); },
             line: function(xfrom, yfrom, xto, yto, options) { return createStep(canvas, group).line(xfrom, yfrom, xto, yto, options); },
             arrow: function(xfrom, yfrom, xto, yto, options) { return createStep(canvas, group).arrow(xfrom, yfrom, xto, yto, options); },
 
