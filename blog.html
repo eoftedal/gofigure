@@ -15,6 +15,7 @@ body {
 #dds { background: url(paper-texture.jpg) 50px 0px no-repeat;
     padding-top: 0px;
     margin-left: -50px;
+    margin-top: -50px;
 }
 
 </style>
@@ -24,16 +25,14 @@ body {
 <div id="dds" style=""></div>
 <script>
 
-    var figure = gofigure.create('dds', '780', '450');
+    var figure = gofigure.create('dds', '650', '350');
     var opts = {arrowheads: "end" };
     figure.box(100, 100, 100, 200, opts).centeredText(150, 320, "Database").animate();
 
 
     var steps = [
-        figure.arrow(200, 200, 300, 200, opts),
-        figure.box(300, 100, 100, 200, opts).centeredText(350, 320, "Server"),
-        figure.arrow(400, 200, 500, 200, opts),
-        figure.box(500, 100, 100, 200, opts).centeredText(550, 320, "Browser")
+        figure.arrow(200, 200, 300, 200, opts).box(300, 100, 100, 200, opts).centeredText(350, 320, "Server"),
+        figure.arrow(400, 200, 500, 200, opts).box(500, 100, 100, 200, opts).centeredText(550, 320, "Browser")
     ];
     figure.bindClick(steps);
 
