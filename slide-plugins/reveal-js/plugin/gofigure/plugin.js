@@ -3,13 +3,14 @@ function addScript(src) {
 	s.src = src;
 	document.body.appendChild(s);
 }
-var gofigure = null;
+window.gofigure = window.gofigure;
+window.Raphael = window.Raphel;
 
 addScript("plugin/gofigure/lib/raphael-min.js");
 addScript("plugin/gofigure/lib/jquery.min.js");
 addScript("plugin/gofigure/gofigure.js");
 function loadFonts() {
-	if (!gofigure) return setTimeout(loadFonts, 100);
+	if (!gofigure || !Raphael) return setTimeout(loadFonts, 100);
 	addScript("plugin/gofigure/lib/cufon.js");
 	addScript("plugin/gofigure/lib/Vegur.js");
 }
