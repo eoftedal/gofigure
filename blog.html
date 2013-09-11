@@ -12,9 +12,9 @@ body {
     padding: 0px;
 }
 
-#dds { background: url(paper-texture.jpg) 140px 0px no-repeat;
-    padding-top: 100px;
-    margin-left: -140px;
+#dds { background: url(paper-texture.jpg) 50px 0px no-repeat;
+    padding-top: 0px;
+    margin-left: -50px;
 }
 
 </style>
@@ -25,15 +25,15 @@ body {
 <script>
 
     var figure = gofigure.create('dds', '780', '450');
-    figure.box(600, 50, 100, 200).animate();
-    figure.centeredText(650, 270, "A box").animate();
+    var opts = {arrowheads: "end" };
+    figure.box(100, 100, 100, 200, opts).centeredText(150, 320, "Database").animate();
+
 
     var steps = [
-        figure.arrow(600, 150, 500, 150).centeredText(550, 167, "to"),
-        figure.box(400, 50, 100, 200, { radius: 0 }).centeredText(450, 270, "Box with small text", {fontsize: 11}),
-        figure.arrow(400, 150, 300, 150, {arrowheads: "end" }).centeredText(350, 167, "single head arrow", {fontsize: 11}),
-
-        figure.centeredText(250, 270, "Slowly drawn box").box(200, 50, 100, 200, {duration: 5000, radius: 25 }),
+        figure.arrow(200, 200, 300, 200, opts),
+        figure.box(300, 100, 100, 200, opts).centeredText(350, 320, "Server"),
+        figure.arrow(400, 200, 500, 200, opts),
+        figure.box(500, 100, 100, 200, opts).centeredText(550, 320, "Browser")
     ];
     figure.bindClick(steps);
 
