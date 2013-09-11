@@ -7,8 +7,10 @@ function addScript(src) {
 addScript("plugin/gofigure/lib/raphael-min.js");
 addScript("plugin/gofigure/lib/jquery.min.js");
 addScript("plugin/gofigure/gofigure.js");
-addScript("plugin/gofigure/lib/cufon.js");
-addScript("plugin/gofigure/lib/Vegur.js");
+setTimeout(function() {
+	addScript("plugin/gofigure/lib/cufon.js");
+	addScript("plugin/gofigure/lib/Vegur.js");
+}, 200);
 
 var gofigureplugin = {
 	steps : {},
