@@ -61,6 +61,29 @@ body {
     	.arrow(290, 90, 260, 60, opts)
 		.animate();
 
+    figure
+        .circle(100, 300, 5)
+        .arrow(105,300,200,300, {arrowheads:"begin"}).arrow(200, 300, 200, 345,{arrowheads:"end"})
+        .circle(200, 350,5)
+        .arrow(195, 350, 100, 350, {arrowheads:"begin"}).arrow(100, 350, 100, 305,{arrowheads:"end"})
+        .animate();
+
+    figure
+        .circle(300,300,5)
+        .line(305,300,400,300).arrow(400, 300, 400, 345, {arrowheads : "end" })
+        .circle(400,350,5)
+        .line(395,350,300,350).arrow(300, 350, 300, 305, {arrowheads : "end" })
+        .animate();
+
+    figure
+        .circle(450,300,5)
+        .line(455,300,500,300).arrow(500, 300, 500, 345, {arrowheads : "end" })
+        .circle(500,350,5)
+        .line(495,350,450,350).arrow(450, 350, 450, 305, {arrowheads : "end" })
+        .animate();
+
+
+
     figure.circle(100,200,1).animate();
     figure.circle(100,200,10).animate();
     figure.circle(100,200,20).animate();
