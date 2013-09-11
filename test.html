@@ -62,6 +62,11 @@ body {
 		.animate();
 
     figure
+        .box(460, 10, 100, 100, {radius: 0})
+        .box(350, 10, 100, 100)
+        .animate();
+
+    figure
         .circle(100, 300, 5)
         .arrow(105,300,200,300, {arrowheads:"begin"}).arrow(200, 300, 200, 345,{arrowheads:"end"})
         .circle(200, 350,5)
@@ -77,19 +82,19 @@ body {
 
     figure
         .circle(450,300,5)
-        .line(455,300,500,300).arrow(500, 300, 500, 345, {arrowheads : "end" })
+        .arrow(455,300,500,300, {arrowheads : "begin" }).line(500, 300, 500, 345)
         .circle(500,350,5)
-        .line(495,350,450,350).arrow(450, 350, 450, 305, {arrowheads : "end" })
+        .arrow(495,350,450,350, {arrowheads : "begin" }).line(450, 350, 450, 305)
         .animate();
 
 
 
     figure.circle(100,200,1).animate();
-    figure.circle(100,200,10).animate();
-    figure.circle(100,200,20).animate();
-    figure.circle(100,200,30).animate();
-    figure.circle(100,200,40).animate();
-    figure.circle(100,200,50).animate();
+    figure.circle(100,200,10, {duration: 1200}).animate();
+    figure.circle(100,200,20, {duration: 1400}).animate();
+    figure.circle(100,200,30, {duration: 1600}).animate();
+    figure.circle(100,200,40, {duration: 1800}).animate();
+    figure.circle(100,200,50, {duration: 2000}).animate();
 
 
     figure
