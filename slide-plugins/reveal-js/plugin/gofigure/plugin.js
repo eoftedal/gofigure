@@ -3,14 +3,17 @@ function addScript(src) {
 	s.src = src;
 	document.body.appendChild(s);
 }
+var gofigure = null;
 
 addScript("plugin/gofigure/lib/raphael-min.js");
 addScript("plugin/gofigure/lib/jquery.min.js");
 addScript("plugin/gofigure/gofigure.js");
-setTimeout(function() {
+function loadFonts() {
+	if (!gofigure) return setTimeout(loadFonts, 100);
 	addScript("plugin/gofigure/lib/cufon.js");
 	addScript("plugin/gofigure/lib/Vegur.js");
-}, 200);
+}
+loadFonts();
 
 var gofigureplugin = {
 	steps : {},
