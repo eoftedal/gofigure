@@ -3,13 +3,13 @@ How to
 
 1. Copy the plugin/gofigure folder into the plugin directory in your reveal presentation
 2. Add the plugin under `Render.initialize`, `dependencies`:
-	{ src: 'plugin/gofigure/plugin.js',  condition: function() { return true; } }
+	{ src: 'plugin/gofigure/plugin.js', condition: function() { return true; } }
 3. Add a div with an id to a slide (the id 'figure' is used below)
 4. Create the steps:
 		<script>
 
-		window.addEventListener('load', function() {
-		  setTimeout(function() {
+		Reveal.addEventListener( 'ready', function( event ) {
+			setTimeout(function() {
 			var figure = gofigure.create('figure', '780', '450');
 		    var opts = {arrowheads: "end", duration:500 };
 		    gofigureplugin.addStep('figure', figure.arrow(10, 10, 40, 40, opts));
