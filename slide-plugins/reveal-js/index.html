@@ -31,6 +31,7 @@
 				xwidth: 780px;
 				height: 450px;
 				text-align: center;
+				background: url(free-paper-texture-13.jpg) no-repeat top center;
 			}
 			#figure svg {
 				margin: 0 auto;
@@ -115,6 +116,17 @@
 		});
 
 		</script>
-
+		<svg xmlns="http://www.w3.org/2000/svg">
+		    <defs>
+		        <filter id="chalk" height="2" width="1.6" color-interpolation-filters="sRGB" y="-0.5" x="-0.3">
+		            <feTurbulence baseFrequency="0.32065" seed="115" result="result1" numOctaves="1" type="turbulence"/>
+		            <feOffset result="result2" dx="-5" dy="-5"/>
+		            <feDisplacementMap scale="3.01" yChannelSelector="G" in2="result1" xChannelSelector="R" in="SourceGraphic"/>
+		        </filter>
+		    </defs>
+		</svg>
+		<style>
+		#figure svg { filter: url(#chalk); -webkit-filter: url(#chalk);}
+		</style>
 	</body>
 </html>
