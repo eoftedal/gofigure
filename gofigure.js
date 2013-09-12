@@ -9,7 +9,6 @@ var gofigure = function() {
         w -= 12.875 / 12.875 * radius * 2;
         h -= 12.876 / 12.875 * radius * 2;
         x += 12.875 / 12.875 * radius;
-        console.log(cx, cy, w, h, x);
         return { 
             pathString: "M" + (x - options.strokeWidth/2.0 ) + "," + y + "h" + options.strokeWidth/2.0 + 
             "h" + w + "c" + cx[0] + ",0," + cx[1] + "," + cy[0] + "," + cx[1] + "," + cy[1] + " " +
@@ -103,6 +102,7 @@ var gofigure = function() {
                 current = subline;
             },
             done: function() {
+                line.remove();
                 if (callback) callback();
             }
         });
@@ -157,6 +157,8 @@ var gofigure = function() {
 
     function create(containerId, width, height) {
         var canvas = Raphael(containerId, width, height);
+        $("#" + containerId + " svg").wrap("<div>");
+
         var group = "group" + gofigureid++;
         return {
             bindClick : function(steps) {
