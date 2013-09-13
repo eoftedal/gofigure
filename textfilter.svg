@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="450">
+    <defs>
+        <filter id="textFilterz">
+          <feGaussianBlur stdDeviation="1" />
+        </div>
+        <filter id="textFilter">
+          <feTurbulence type="fractalNoise" baseFrequency="1.015" numOctaves="2" result="turbulence_3" data-filterId="3" />
+          <feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" in2="turbulence_3" scale="5" result="fdm1" />
+          <feTurbulence type="fractalNoise" baseFrequency=".015" numOctaves="2" result="turbulence_4" data-filterId="4" />
+          <feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="fdm1" in2="turbulence_4" scale="5" />
+          <feGaussianBlur stdDeviation="0.7" />
+          <feComposite operator="in" in2="inputB" />
+          <feComposite operator="arithmetic" k2="1" k3="1" in2="inputB" />
+        </filter>
+    </defs>
+</svg>

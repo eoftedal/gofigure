@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/raphael-min.js"></script>
+<script src="lib/Vegur.js"></script>
+<script src="lib/cufon.js"></script>
+<script src="gofigure.js"></script>
+<style>
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+#dds { background: url(paper-texture.jpg) 0px 0px no-repeat;
+    padding-top: 100px;
+    margin-left: 100px;
+}
+
+</style>
+
+<style>
+#dds div { 
+    filter: url(textfilter.svg#textFilter); 
+    -webkit-filter: url(textfilter.svg#textFilter);
+}
+</style>
+</head>
+<body>
+
+
+<div id="dds" style=""></div>
+<script>
+
+    var figure = gofigure.create('dds', '780', '450');
+    var opts = {arrowheads: "end", duration:500 }
+    figure
+    	.arrow(10, 10, 40, 40, opts)
+    	.arrow(50, 10, 50, 40, opts)
+    	.arrow(90, 10, 60, 40, opts)
+    	.arrow(10, 50, 40, 50, opts)
+    	.arrow(90, 50, 60, 50, opts)
+    	.arrow(10, 90, 40, 60, opts)
+    	.arrow(50, 90, 50, 60, opts)
+    	.arrow(90, 90, 60, 60, opts)
+		.animate();
+
+    opts = {arrowheads: "begin", duration:500 }
+    figure
+    	.arrow(110, 10, 140, 40, opts)
+    	.arrow(150, 10, 150, 40, opts)
+    	.arrow(190, 10, 160, 40, opts)
+    	.arrow(110, 50, 140, 50, opts)
+    	.arrow(190, 50, 160, 50, opts)
+    	.arrow(110, 90, 140, 60, opts)
+    	.arrow(150, 90, 150, 60, opts)
+    	.arrow(190, 90, 160, 60, opts)
+		.animate();
+
+    opts = {arrowheads: "both", duration:500 }
+    figure
+    	.arrow(210, 10, 240, 40, opts)
+    	.arrow(250, 10, 250, 40, opts)
+    	.arrow(290, 10, 260, 40, opts)
+    	.arrow(210, 50, 240, 50, opts)
+    	.arrow(290, 50, 260, 50, opts)
+    	.arrow(210, 90, 240, 60, opts)
+    	.arrow(250, 90, 250, 60, opts)
+    	.arrow(290, 90, 260, 60, opts)
+		.animate();
+
+    figure
+        .box(460, 10, 100, 100, {radius: 0})
+        .box(350, 10, 100, 100)
+        .animate();
+
+    figure
+        .circle(100, 300, 5)
+        .arrow(105,300,200,300, {arrowheads:"begin"}).arrow(200, 300, 200, 345,{arrowheads:"end"})
+        .circle(200, 350,5)
+        .arrow(195, 350, 100, 350, {arrowheads:"begin"}).arrow(100, 350, 100, 305,{arrowheads:"end"})
+        .animate();
+
+    figure
+        .circle(300,300,5)
+        .line(305,300,400,300).arrow(400, 300, 400, 345, {arrowheads : "end" })
+        .circle(400,350,5)
+        .line(395,350,300,350).arrow(300, 350, 300, 305, {arrowheads : "end" })
+        .animate();
+
+    figure
+        .circle(450,300,5)
+        .arrow(455,300,500,300, {arrowheads : "begin" }).line(500, 300, 500, 345)
+        .circle(500,350,5)
+        .arrow(495,350,450,350, {arrowheads : "begin" }).line(450, 350, 450, 305)
+        .animate();
+
+
+
+    figure.circle(100,200,1).animate();
+    figure.circle(100,200,10, {duration: 1200}).animate();
+    figure.circle(100,200,20, {duration: 1400}).animate();
+    figure.circle(100,200,30, {duration: 1600}).animate();
+    figure.circle(100,200,40, {duration: 1800}).animate();
+    figure.circle(100,200,50, {duration: 2000}).animate();
+
+
+    figure
+        .circle(300,200,80)
+        .centeredText(300, 200, "Hola el mundo")
+        .arrow(380, 200, 440, 200, {"arrowheads" : "end"})
+        .circle(500,200,60)
+        .centeredText(500, 200, "YOLO")
+        .animate();
+
+
+</script>
+<!--
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="450">
+    <defs>
+        <filter id="textFilterz">
+          <feGaussianBlur stdDeviation="1" />
+        </div>
+        <filter id="textFilter">
+          <feTurbulence type="fractalNoise" baseFrequency="1.015" numOctaves="2" result="turbulence_3" data-filterId="3" />
+          <feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" in2="turbulence_3" scale="5" result="fdm1" />
+          <feTurbulence type="fractalNoise" baseFrequency=".015" numOctaves="2" result="turbulence_4" data-filterId="4" />
+          <feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="fdm1" in2="turbulence_4" scale="5" />
+          <feGaussianBlur stdDeviation="0.7" />
+          <feComposite operator="in" in2="inputB" />
+          <feComposite operator="arithmetic" k2="1" k3="1" in2="inputB" />
+        </filter>
+    </defs>
+</svg>
+-->
+
+</body>
+</html>
