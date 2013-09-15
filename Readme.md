@@ -79,6 +79,19 @@ Options:
 
 - - -
 
+##### **path** `<drawing area or animatable>.path(points, [options])`
+Draw line between array of points in order.
+
+Returns animatable figure.
+
+Options:
+
+* `duration` - animation duration in ms (default: 1000)
+* `arrowheads` - where to draw arrowheads (default: "both", possible values "both", "begin", "end", "none")
+
+- - -
+
+
 ##### **circle** `<drawing area or animatable>.circle(x, y, radius, [options])`
 Draw a circle with center at (x, y) with the given radius.
 
