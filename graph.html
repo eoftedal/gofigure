@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/raphael-min.js"></script>
+<script src="lib/Vegur.js"></script>
+<script src="lib/cufon.js"></script>
+<script src="gofigure.js"></script>
+<style>
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+#dds { background: url(paper-texture.jpg) 0px 0px no-repeat;
+    padding-top: 100px;
+    margin-left: 100px;
+}
+
+</style>
+
+<style>
+#dds div { 
+    filter: url(textfilter2.svg#textFilter); 
+    -webkit-filter: url(textfilter2.svg#textFilter);
+}
+</style>
+</head>
+<body>
+
+
+<div id="dds" style=""></div>
+<script>
+	var data = [[1,10],[2,20],[3,15],[4,25],[5,30],[6,25],[7,32]];
+
+    var figure = gofigure.create('dds', '780', '450');
+    var origo = [50, 400];
+    var dimensions = [400, 300];
+ 	function adjust(data) {
+ 		var newData = [];
+ 		var maxX = data[data.length - 1][0];
+ 		var minX = data[0][0];
+ 		var maxY = 0;
+ 		for (var i in data) {
+ 			maxY = maxY < data[i][1] ? data[i][1] : maxY;
+ 		}
+ 		for (var i in data) {
+ 			newData.push([ origo[0] + ((data[i][0] - minX)/ (maxX-minX) * dimensions[0]) , origo[1] - (data[i][1]/maxY * dimensions[1]) ]);
+ 		}
+ 		return newData;
+ 	}
+ 	figure
+ 		.arrow(origo[0], origo[1], origo[0], origo[1] - dimensions[1], {arrowheads: "end"}).animate();
+ 	figure
+ 		.arrow(origo[0], origo[1], origo[0] + dimensions[0], origo[1], {arrowheads: "end"})
+ 		.path(adjust(data), {arrowheads: "end"})
+ 		.animate();
+
+</script>
+
+
+</body>
+</html>
