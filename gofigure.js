@@ -43,6 +43,21 @@ var gofigure = function() {
         };
     };
 
+    var path = function(points, options) {
+        console.log(points.length, points);
+        if (points.length <= 1) return { pathString: "" };
+        if (points.length === 2) return line(points[0][0], points[0][1], points[1][0], points[1][1], options);
+        var headBegin = /(begin|both)/.test(options.arrowheads) ? "begin" : "none"; 
+        var headEnd = /(end|both)/.test(options.arrowheads) ? "end" : "none"; 
+        var l = line(points[0][0], points[0][1], points[1][0], points[1][1], $.extend(options, {"arrowheads" : headBegin}));
+        for (var i = 1; i < (points.length - 2); i++) {
+            l.pathString += line(points[i][0], points[i][1], points[i+1][0], points[i+1][1], $.extend(options, {"arrowheads" : "none"})).pathString;
+        }
+        l.pathString += line(points[points.length - 2][0], points[points.length - 2][1], points[points.length - 1][0], points[points.length - 1][1], $.extend(options, {"arrowheads" : headEnd})).pathString;
+        return l;
+    };
+
+
     var drawcenteredtext = function(canvas, x, y, text, options) { //Yes, this is quite ugly code, but it seems to work
         var result = drawtext(canvas, -1000, -1000, text, options).pathString;
         var tmp = result.replace(/[A-Z](,?[A-Z])*/g, ",").replace(/^,+/, "").replace(/,+$/g, "");
@@ -140,6 +155,10 @@ var gofigure = function() {
             options = defaults(options);
             return prepare(step, circle(x, y, radius, options), options);
         };
+        step.path = function(points, options) {
+            options = defaults(options);
+            return prepare(step, path(points, options), options);
+        };
         step.line = function(xfrom, yfrom, xto, yto, options) {
             options = defaults(options);
             return prepare(step, line(xfrom, yfrom, xto, yto, options), options);
@@ -174,6 +193,7 @@ var gofigure = function() {
             box: function(x, y, width, height, options) { return createStep(canvas, group).box(x, y, width, height, options); },
             centeredText: function(x, y, text, options) { return createStep(canvas, group).centeredText(x, y, text, options); },
             circle: function(x, y, radius, options) { return createStep(canvas, group).circle(x, y, radius, options); },
+            path: function(points, options) { return createStep(canvas, group).path(points, options); },
             line: function(xfrom, yfrom, xto, yto, options) { return createStep(canvas, group).line(xfrom, yfrom, xto, yto, options); },
             arrow: function(xfrom, yfrom, xto, yto, options) { return createStep(canvas, group).arrow(xfrom, yfrom, xto, yto, options); },
 
