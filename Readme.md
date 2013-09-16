@@ -1,4 +1,4 @@
-Simple library for animated drawings of arrows, boxes and text in HTML5
+Simple library for animated drawings of arrows, boxes and text in HTML5. Built upon the brilliant [Raphaël](http://raphaeljs.com/)
 
 Example: [http://eoftedal.github.io/gofigure/index.html]
 
