@@ -50,9 +50,9 @@ body {
  		return newData;
  	}
  	figure
- 		.arrow(origo[0], origo[1], origo[0], origo[1] - dimensions[1], {arrowheads: "end"}).animate();
+ 		.arrow(origo[0], origo[1], origo[0], origo[1] - dimensions[1] - 50, {arrowheads: "end"}).animate();
  	figure
- 		.arrow(origo[0], origo[1], origo[0] + dimensions[0], origo[1], {arrowheads: "end"})
+ 		.arrow(origo[0], origo[1], origo[0] + dimensions[0] + 50, origo[1], {arrowheads: "end"})
  		.path(adjust(data), {arrowheads: "end"})
  		.animate();
 
