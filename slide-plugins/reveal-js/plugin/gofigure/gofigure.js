@@ -1,4 +1,4 @@
-/*! gofigure v0.0.2 */
+/*! gofigure v0.0.3 */
 /* global $:false, Raphael:false */
 
 var gofigure = function() {
