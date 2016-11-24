@@ -18,7 +18,12 @@ body {
 }
 
 </style>
-
+<style>
+#dds div { 
+    filter: url(textfilter2.svg#textFilter); 
+    -webkit-filter: url(textfilter2.svg#textFilter);
+}
+</style>
 </head>
 <body>
     <h1>gofigure.js - demo</h1>
@@ -42,18 +47,7 @@ Click the box below. Works best in Chrome. (other examples: <a href="graph.html"
 </script>
 <a href="https://github.com/eoftedal/gofigure"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
-<svg xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <filter id="chalk" height="2" width="1.6" color-interpolation-filters="sRGB" y="-0.5" x="-0.3">
-            <feTurbulence baseFrequency="0.32065" seed="115" result="result1" numOctaves="1" type="turbulence"/>
-            <feOffset result="result2" dx="-5" dy="-5"/>
-            <feDisplacementMap scale="3.05" yChannelSelector="G" in2="result1" xChannelSelector="R" in="SourceGraphic"/>
-        </filter>
-    </defs>
-</svg>
-<style>
-#dds { filter: url(#chalk); -webkit-filter: url(#chalk);}
-</style>
+
 
 
 
